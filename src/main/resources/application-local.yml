@@ -9,3 +9,6 @@ spring:
     cache: false
     encoding: UTF-8
     check-template-location: true
+    
+api:
+  path: http://localhost:1000
