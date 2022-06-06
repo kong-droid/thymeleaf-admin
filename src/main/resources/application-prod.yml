@@ -11,4 +11,4 @@ spring:
     check-template-location: true
     
 api:
-  path: https://api.zeedoco.shop    
+  path: https://api.zeedoco.shop

@@ -5,14 +5,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-
 @Controller
-@RequestMapping("/home")
-public class HomeController {
+@RequestMapping("/post")
+public class PostController {
 
-	@GetMapping("/index")
-	public String homeIndex() {
-		return "main/index";
+	@GetMapping("/notice")
+	public String notice() {
+		return "post/post";
 	}
 	
+	@GetMapping("/faq")
+	public String faq() {
+		return "post/post";
+	}
+	
+	@GetMapping("/event")
+	public String event() {
+		return "post/post";
+	}
 }

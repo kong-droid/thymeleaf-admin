@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head th:include="./layout/header"></head>
+<body class="g-sidenav-show  bg-gray-200">
+	<aside 
+		class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark" 
+		id="sidenav-main"
+		th:include="./layout/aside"
+	>
+	</aside>
+	<main>
+		<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
+			<div class="container-fluid py-1 px-3">
+		    	<nav aria-label="breadcrumb">
+				      <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+				        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
+				        <li class="breadcrumb-item text-sm text-dark active" aria-current="page"></li>
+				      </ol>
+				      <h6 class="font-weight-bolder mb-0"></h6>
+		   		</nav>				 	
+		   	</div>
+	   		<div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+				<ul class="navbar-nav  justify-content-end">
+					<li class="nav-item d-flex align-items-center">
+						<a href="#" onclick="signOut()" class="nav-link text-body font-weight-bold px-0">
+						<span class="d-sm-inline d-none">SignOut</span>
+						</a>
+					</li>
+				</ul>
+			</div>  	
+		</nav>
+		<div class="container-fluid py-4">
+			<footer th:include="./layout/footer"></footer>
+		</div>
+	</main>
+	<script src="../assets/js/func/post.js"></script>
+</body>
+</html>
