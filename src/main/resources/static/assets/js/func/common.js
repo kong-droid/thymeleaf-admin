@@ -26,19 +26,17 @@ const getPageNation = (totalCount, currentPage, pageSize, func) => {
         const startPage = Math.floor(currentPage/pageUnit)*pageUnit;
         const totalPage = Math.ceil(parseInt(totalCount) / parseInt(pageSize));
         
-        pageHtml +=  "<a href='#' id='" + 0 + "' class='direction first' onclick='" + func + "(0)'></a>";
-        pageHtml +=  "<a href='#' id='" + (currentPage-1) + "' class='direction prev' onclick='" + func + "(" + (currentPage-1) + ")'>" + (currentPage-1) + "</a>";
+        pageHtml +=  "<a href='#' id='" + 0 + "' class='btn btn-primary' onclick='" + func + "(0)'> << </a>";
         
         for(var i=startPage; i<(totalPage > startPage+pageUnit ? startPage+pageUnit : totalPage); i++) {
         	if(currentPage === i) {
-        		pageHtml +=  "<a href='#' id='" + i + "' class='on' onclick='" + func + "(" + i + ")'>" + (i+1) +"</a>";
+        		pageHtml +=  "<a href='#' id='" + i + "' class='btn btn-primary' onclick='" + func + "(" + i + ")'>" + (i+1) +"</a>";
         	} else {
-        		pageHtml +=  "<a href='#' id='" + i + "' onclick='" + func + "(" + i + ")'>" + (i+1) +"</a>";
+        		pageHtml +=  "<a href='#' id='" + i + "' class='btn btn-primary' onclick='" + func + "(" + i + ")'>" + (i+1) +"</a>";
         	}
         }
         
-        pageHtml +=  "<a href='#' id='" + (currentPage+1) + "' class='direction next' onclick='" + func + "(" + (currentPage+1 >= totalPage ? currentPage : currentPage+1) + ")'>" + (currentPage+1) + "</a>";
-        pageHtml +=  "<a href='#' id='" + (totalPage-1) + "' class='direction last' onclick='" + func + "(" + (totalPage-1) + ")'></a>";
+        pageHtml +=  "<a href='#' id='" + (totalPage-1) + "' class='btn btn-primary' onclick='" + func + "(" + (totalPage-1) + ")'> >> </a>";
         document.querySelector("#paging").innerHTML = pageHtml;
         
     }
