@@ -12,3 +12,6 @@ spring:
     
 api:
   path: http://localhost:1000
+  
+front:
+  path: http://localhost:2000

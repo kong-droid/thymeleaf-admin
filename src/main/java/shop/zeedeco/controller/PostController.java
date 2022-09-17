@@ -23,4 +23,10 @@ public class PostController {
 	public String event() {
 		return "post/post";
 	}
+	
+	@GetMapping("/handle")
+	public String postHandle() {
+		return "post/post_edit";
+	}
+	
 }

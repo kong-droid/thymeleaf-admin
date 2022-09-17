@@ -9,7 +9,7 @@ const signIn = () => {
     	{
 			id			:	document.getElementById('sign-in-id').value
     		, password	:	document.getElementById('sign-in-password').value
-    	}, 
+    	},
     	(callback) => {
 			if(callback.role !== 'ROLE_ADMIN') {
 				alert('관리자 계정만 로그인할 수 있습니다.');

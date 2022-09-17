@@ -12,3 +12,6 @@ spring:
     
 api:
   path: https://api.zeedoco.shop
+  
+front:
+  path: http://admin.zeedoco.shop

@@ -1,5 +1,6 @@
 let boardSeq = location.search.split("?")[1].split("=")[1];
 
+// READ
 const getPosts = (currentPage) => {
 	
 	let pageInfo = {
@@ -24,8 +25,8 @@ const getPosts = (currentPage) => {
 							<td class="align-middle text-center">${item.createdDt.split('T')[0]}</td>
 							<td class="align-middle text-center">${item.createdNo}</td>
 							<td class="align-middle text-center" style="padding-top:1%;">
-								<a href="javascript:void(0)" class="btn btn-success btn-sm">Update</a>
-								<a href="javascript:void(0)" class="btn btn-danger btn-sm">Delete</a>
+								<a href="javascript:void(0)" class="btn btn-success btn-sm" id="board-update-btn" onclick="movePage(${item.postSeq})">Update</a>
+								<a href="javascript:void(0)" class="btn btn-danger btn-sm" id="board-delete-btn" onclick="deletePost(${item.postSeq})">Delete</a>
 							<td>
 						</tr>`;
 				});
@@ -40,7 +41,6 @@ const getPosts = (currentPage) => {
 };
 
 const getBoardTitle = () => {
-	
 	switch (boardSeq) {
 		case "1":
 			document.getElementById('board-title').innerHTML = `Notice`;
@@ -52,11 +52,33 @@ const getBoardTitle = () => {
 			document.getElementById('board-title').innerHTML = 'FAQ';
 		break;
 	}
-	
-	
 };
 
 document.addEventListener('DOMContentLoaded', () => {
 	getBoardTitle();
 	getPosts();
 });
+
+
+// MOVE
+const movePage = ( postSeq ) => {
+	location.href = postSeq === undefined ? '/post/handle' : `/post/handle/${postSeq}`;
+};
+
+// DELETE
+const deletePost = ( postSeq ) => {
+	callXhr(
+		document.getElementById('api-path').value.concat(`/post/${postSeq}/${sessionStorage.getItem('memberSeq')}`)
+		, 'PATCH' 
+    	, ''
+    	, (callback) => {
+			alert(callback.message);
+			location.reload();
+		}
+	);
+};
+
+// ADD & MODIFY
+const handlePost = () => {
+	
+};
