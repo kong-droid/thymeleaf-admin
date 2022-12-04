@@ -1,4 +1,4 @@
-package shop.zeedeco;
+package shop.kong;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

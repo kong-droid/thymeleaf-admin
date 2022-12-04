@@ -2,9 +2,8 @@ const signIn = () => {
 	isValid('sign-in-password', '비밀번호를 입력하세요. ');
 	isValid('sign-in-id',		'아이디를 입력하세요. ');
 	
-	// signIn
   	callXhr(
-    	document.getElementById('api-path').value.concat('/auth/login'), 
+    	document.getElementById('api-path').value.concat('/auth/authentication'), 
     	'POST', 
     	{
 			id			:	document.getElementById('sign-in-id').value

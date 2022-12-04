@@ -1,4 +1,4 @@
-package shop.zeedeco.filter;
+package shop.kong.filter;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;

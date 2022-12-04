@@ -17,11 +17,8 @@ const callXhr = (url, method, params, callback) => {
 						callback(JSON.parse(xhr.response));
 					}
 				break;
-				case 500:
-					alert('에러가 발생했습니다.\n관리자에게 문의하세요.');
-				break;
 				default:
-					alert(`${xhr.status}`);
+					alert('Invaild Error.');
 				break;
 			}
       	}
@@ -41,11 +38,8 @@ const callFileXhr = (url, method, params, callback) => {
 						callback(JSON.parse(xhr.response));
 					}
 				break;
-				case 500:
-					alert('에러가 발생했습니다.\n관리자에게 문의하세요.');
-				break;
 				default:
-					alert(`${xhr.status}`);
+					alert('Invaild Error.');
 				break;
 			}
       	}

@@ -18,97 +18,97 @@
 		>
 		</nav>
 		<div class="container-fluid py-4">
-	      <div class="row">
-	        <div class="col-12">
-	          <div class="card my-4">
-	            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-	              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-	                <h6 class="text-white ps-3" id="board-title"></h6>
-	              </div>
-	            </div>
-	            <div class="card-body px-0 pb-2">
-	            	<div class="row g-3 my-2" style="padding-left: 2%; padding-right: 2%;">
-		            	<div class="col-md-1">
-	                  		<label class="form-label" for="title">제목</label>
-	                  	</div>
-						<div class="col-md-11">
-							<div class="input-group input-group-outline">
-								<input type="text" class="form-control" id="title" />
+			<div class="row">
+				<div class="col-12">
+					<div class="card my-4">
+						<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+							<div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+								<h6 class="text-white ps-3" id="board-title"></h6>
 							</div>
-	                    </div>
-	            	</div>
-                  	<div class="row g-3 my-2" style="padding-left: 2%; padding-right: 2%;">
-	                  	<div class="col-md-1">
-                  			<label class="form-label" for="period-start-dt">게시(시작일)</label>
-                  		</div>
-						<div class="col-md-4">
-							<div class="input-group input-group-outline">
-	                    		<input type="datetime-local" class="form-control" id="period-start-dt">
-						    </div>
 						</div>
-	                  	<div class="col-md-2" align="center">~</div>
-	                  	<div class="col-md-1">
-                  			<label class="form-label" for="period-end-dt">게시(종료일)</label>
-                  		</div>
-						<div class="col-md-4">
-							<div class="input-group input-group-outline">
-	                    		<input type="datetime-local" class="form-control" id="period-end-dt">
-						    </div>
+	            		<div class="card-body px-0 pb-2">
+			            	<div class="row g-3 my-2" style="padding-left: 2%; padding-right: 2%;">
+				            	<div class="col-md-1">
+			                  		<label class="form-label" for="title">제목</label>
+			                  	</div>
+								<div class="col-md-11">
+									<div class="input-group input-group-outline">
+										<input type="text" class="form-control" id="title" />
+									</div>
+			                    </div>
+			            	</div>
+		                  	<div class="row g-3 my-2" style="padding-left: 2%; padding-right: 2%;">
+			                  	<div class="col-md-1">
+		                  			<label class="form-label" for="period-start-dt">게시(시작일)</label>
+		                  		</div>
+								<div class="col-md-4">
+									<div class="input-group input-group-outline">
+			                    		<input type="datetime-local" class="form-control" id="period-start-dt">
+								    </div>
+								</div>
+			                  	<div class="col-md-2" align="center">~</div>
+			                  	<div class="col-md-1">
+		                  			<label class="form-label" for="period-end-dt">게시(종료일)</label>
+		                  		</div>
+								<div class="col-md-4">
+									<div class="input-group input-group-outline">
+			                    		<input type="datetime-local" class="form-control" id="period-end-dt">
+								    </div>
+								</div>
+		                  	</div>
+							<div class="row g-2 my-2" style="padding-left: 2%; padding-right: 2%;">
+								<div class="col-md-1">
+									<label class="form-label" for="notice-yn">공지글 여부</label>
+								</div>
+								<div class="col-md-3 form-check">
+		                    		<input class="form-check-input" type="checkbox" id="notice-yn" name="notice-yn">
+								</div>
+								<div class="col-md-1">
+									<label class="form-label" for="secret-yn">비밀글 여부</label>
+								</div>	
+								<div class="col-md-3 form-check">
+		                    		<input class="form-check-input" type="checkbox" id="secret-yn" name="secret-yn">
+								</div>
+								<div class="col-md-1">
+		                    		<label class="form-label" for="use-yn">사용 여부</label>
+								</div>		
+								<div class="col-md-3 form-check">
+		                    		<input class="form-check-input" type="checkbox" id="use-yn" name="use-yn">
+		                    	</div>			
+		                  	</div>      
+		                  	<div class="row g-2 my-2" style="padding-left: 2%; padding-right: 2%;">
+								<div class="col-md-1">
+									<label class="form-label" for="content">내용</label>
+								</div>
+								<div class="col-md">
+									<div class="input-group input-group-outline" id="content"></div>
+		                    	</div>		
+		                  	</div>           
+			            	<div class="row g-3 my-2" style="padding-left: 2%; padding-right: 2%;">
+				            	<div class="col-md-1">
+			                  		<label class="form-label" for="remark">비고</label>
+			                  	</div>
+								<div class="col-md-11">
+									<div class="input-group input-group-outline">
+										<input type="text" class="form-control" id="remark">
+									</div>
+			                    </div>
+			            	</div>   
+			            	<div class="row g-3 my-2" style="padding-left: 2%; padding-right: 2%;">
+				            	<div class="col-md-1">
+			                  		<label class="form-label" for="remark">파일첨부</label>
+			                  	</div>
+								<div class="col-md-11">
+									<div class="input-group input-group-outline">
+										<input type="file" class="form-control" id="file" multiple>
+									</div>
+			                    </div>
+			            	</div>	            	               	 	                 	                  	                  	
 						</div>
-                  	</div>
-					<div class="row g-2 my-2" style="padding-left: 2%; padding-right: 2%;">
-						<div class="col-md-1">
-							<label class="form-label" for="notice-yn">공지글 여부</label>
-						</div>
-						<div class="col-md-3 form-check">
-                    		<input class="form-check-input" type="checkbox" id="notice-yn" name="notice-yn">
-						</div>
-						<div class="col-md-1">
-							<label class="form-label" for="secret-yn">비밀글 여부</label>
-						</div>	
-						<div class="col-md-3 form-check">
-                    		<input class="form-check-input" type="checkbox" id="secret-yn" name="secret-yn">
-						</div>
-						<div class="col-md-1">
-                    		<label class="form-label" for="use-yn">사용 여부</label>
-						</div>		
-						<div class="col-md-3 form-check">
-                    		<input class="form-check-input" type="checkbox" id="use-yn" name="use-yn">
-                    	</div>			
-                  	</div>      
-                  	<div class="row g-2 my-2" style="padding-left: 2%; padding-right: 2%;">
-						<div class="col-md-1">
-							<label class="form-label" for="content">내용</label>
-						</div>
-						<div class="col-md">
-							<div class="input-group input-group-outline" id="content"></div>
-                    	</div>		
-                  	</div>           
-	            	<div class="row g-3 my-2" style="padding-left: 2%; padding-right: 2%;">
-		            	<div class="col-md-1">
-	                  		<label class="form-label" for="remark">비고</label>
-	                  	</div>
-						<div class="col-md-11">
-							<div class="input-group input-group-outline">
-								<input type="text" class="form-control" id="remark">
-							</div>
-	                    </div>
-	            	</div>   
-	            	<div class="row g-3 my-2" style="padding-left: 2%; padding-right: 2%;">
-		            	<div class="col-md-1">
-	                  		<label class="form-label" for="remark">파일첨부</label>
-	                  	</div>
-						<div class="col-md-11">
-							<div class="input-group input-group-outline">
-								<input type="file" class="form-control" id="file" multiple>
-							</div>
-	                    </div>
-	            	</div>	            	               	 	                 	                  	                  	
+					</div>
 				</div>
-	          </div>
-	        </div>
-	      </div>
-	     </div> 
+			</div>
+		</div> 
 		<!-- footer -->
 		<div class="container-fluid py-4">
 			<footer th:include="./layout/footer"></footer>
