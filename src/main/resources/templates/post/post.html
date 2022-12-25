@@ -59,5 +59,12 @@
 			</div>
 		</main>
 		<script src="../assets/js/func/post.js"></script>
+		<script type="text/javascript">
+			let boardSeq = location.search.split("?")[1].split("=")[1];		
+			document.addEventListener('DOMContentLoaded', () => {
+				getBoardTitle();
+				getPosts();
+			});
+		</script>
 	</body>
 </html>

@@ -10,14 +10,14 @@ const signIn = () => {
     		, password	:	document.getElementById('sign-in-password').value
     	},
     	(callback) => {
-			if(callback.role !== 'ROLE_ADMIN') {
+			if(callback.data.role.toUpperCase() !== 'ROLE_ADMIN') {
 				alert('관리자 계정만 로그인할 수 있습니다.');
 			} else {
-				sessionStorage.setItem("ROLE", 		callback.role);
-				sessionStorage.setItem("memberSeq", callback.memberSeq);
-				sessionStorage.setItem("name", 		callback.name);
-				sessionStorage.setItem("email", 	callback.email);
-				sessionStorage.setItem("profile", 	callback.profile);
+				setCookie("role", callback.data.role.toUpperCase(), 1);
+				setCookie("name", callback.data.name, 1);
+				setCookie("id", callback.data.id, 1);
+				setCookie("profile", callback.data.profile.toLowerCase(), 1);
+				setCookie("memberSeq", callback.data.memberSeq, 1);
 				location.href = '/post/notice?boardSeq=1';
 			}
 			
@@ -27,7 +27,11 @@ const signIn = () => {
 
 const signOut = () => {
 	if(confirm("로그아웃 하시겠습니까?")){
-		sessionStorage.clear();
+		deleteCookie("role");
+		deleteCookie("name");
+		deleteCookie("id");
+		deleteCookie("profile");
+		deleteCookie("memberSeq");
 		location.href = '/';	
 	}
 };

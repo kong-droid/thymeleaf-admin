@@ -22,9 +22,8 @@
 				<div class="col-12">
 					<div class="card my-4">
 						<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-							<div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-								<h6 class="text-white ps-3" id="board-title"></h6>
-							</div>
+							<input type="hidden" name="post-seq" id="post-seq" th:value="${postSeq}"/>
+							<div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3" id="post-title"></div>
 						</div>
 	            		<div class="card-body px-0 pb-2">
 			            	<div class="row g-3 my-2" style="padding-left: 2%; padding-right: 2%;">
@@ -43,7 +42,7 @@
 		                  		</div>
 								<div class="col-md-4">
 									<div class="input-group input-group-outline">
-			                    		<input type="datetime-local" class="form-control" id="period-start-dt">
+			                    		<input type="datetime-local" class="form-control" id="period-start-dt"/>
 								    </div>
 								</div>
 			                  	<div class="col-md-2" align="center">~</div>
@@ -52,7 +51,7 @@
 		                  		</div>
 								<div class="col-md-4">
 									<div class="input-group input-group-outline">
-			                    		<input type="datetime-local" class="form-control" id="period-end-dt">
+			                    		<input type="datetime-local" class="form-control" id="period-end-dt"/>
 								    </div>
 								</div>
 		                  	</div>
@@ -61,13 +60,13 @@
 									<label class="form-label" for="notice-yn">공지글 여부</label>
 								</div>
 								<div class="col-md-3 form-check">
-		                    		<input class="form-check-input" type="checkbox" id="notice-yn" name="notice-yn">
+		                    		<input class="form-check-input" type="checkbox" id="notice-yn" name="notice-yn"/>
 								</div>
 								<div class="col-md-1">
 									<label class="form-label" for="secret-yn">비밀글 여부</label>
 								</div>	
 								<div class="col-md-3 form-check">
-		                    		<input class="form-check-input" type="checkbox" id="secret-yn" name="secret-yn">
+		                    		<input class="form-check-input" type="checkbox" id="secret-yn" name="secret-yn"/>
 								</div>
 								<div class="col-md-1">
 		                    		<label class="form-label" for="use-yn">사용 여부</label>
@@ -83,24 +82,14 @@
 								<div class="col-md">
 									<div class="input-group input-group-outline" id="content"></div>
 		                    	</div>		
-		                  	</div>           
-			            	<div class="row g-3 my-2" style="padding-left: 2%; padding-right: 2%;">
-				            	<div class="col-md-1">
-			                  		<label class="form-label" for="remark">비고</label>
-			                  	</div>
-								<div class="col-md-11">
-									<div class="input-group input-group-outline">
-										<input type="text" class="form-control" id="remark">
-									</div>
-			                    </div>
-			            	</div>   
+		                  	</div>             
 			            	<div class="row g-3 my-2" style="padding-left: 2%; padding-right: 2%;">
 				            	<div class="col-md-1">
 			                  		<label class="form-label" for="remark">파일첨부</label>
 			                  	</div>
 								<div class="col-md-11">
 									<div class="input-group input-group-outline">
-										<input type="file" class="form-control" id="file" multiple>
+										<input type="file" class="form-control" id="file" multiple/>
 									</div>
 			                    </div>
 			            	</div>	            	               	 	                 	                  	                  	
@@ -114,10 +103,18 @@
 			<footer th:include="./layout/footer"></footer>
 		</div>
 	</main>
-	<script src="../assets/js/func/post.js"></script>
+	<script src="/assets/js/func/post.js"></script>
 	<script type="text/javascript">
+		const postSeq = document.querySelector("#post-seq").value;
+		let postTitle = document.querySelector("#post-title");
 		document.addEventListener('DOMContentLoaded', () => {
 			loadEditor();
+			if(postSeq !== "") {
+				postTitle.innerHTML = `<h6 class="text-white ps-3" >수정</h6>`;
+				getPost();
+			} else {
+				postTitle.innerHTML = `<h6 class="text-white ps-3" >등록</h6>`;
+			}
 		});
 	</script>
 </body>
