@@ -3,15 +3,6 @@
 *	2022-06-05
 */
 
-
-// validation
-const isValid = (tagName, comment) => {
-	if(document.getElementById(tagName).value === '') {
-		alert(comment);
-		return false;	
-	}
-};
-
 /**
  * 페이징 처리
  * @param totalCount 	리스트 총계
@@ -96,3 +87,87 @@ const deleteCookie = (cookieName) => {
 	expireDate.setDate( expireDate.getDate() - 1 );
 	document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString() + "; path=/";
 };
+
+
+const isEmpty = (value) => {
+
+	const values = Object.values(value);
+
+	for (const item of values) {
+		if (checkSpace(item)) {
+			return true;
+		}
+		if (item === '' || item !== null && item.length === 0) return true;
+		if (item === null) return true;
+	}
+
+	if (value === null) {
+		return true;
+	}
+	
+	if (value.length) {
+		return value.length === 0;
+	}
+	
+	if (value.trim().length) {
+		return value.trim().length === 0;
+	}
+
+	 if (checkSpace(value)) {
+	 	return true;
+	 }
+
+  return Object.keys(value).length === 0;
+};
+
+const hasAnyValue = (v) => {
+	const values = Object.values(v);
+	let answer = false;
+	for (const item of values) {
+		if (item !== '' &&  item.length !== 0) answer = true;
+	}
+	return answer;
+}
+
+const checkSpace = (str) => {
+	const pattern = /\s{2,}/g;
+	return pattern.test(str);
+};
+
+const onFocus = (element, comment) => {
+	alert(comment);
+	element.focus();
+};
+
+const checkPhoneNum = (str) => {
+	const pattern = /^\d{3}-\d{3,4}-\d{4}$/;
+	return !pattern.test(str);
+};
+
+const checkEmail = (str) => {
+	const pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	return !pattern.test(str);
+};
+
+const checkPassword = (str) => {
+	const pattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i;
+	return !pattern.test(str);
+};
+
+const commonFileUpload = (tbName, tbSeq, tbType, memberSeq, files, func) => {
+	const formData = new FormData();
+	formData.append("tbName", tbName);
+	formData.append("tbSeq", tbSeq);
+	formData.append("tbType", tbType);
+	formData.append("memberSeq", memberSeq);
+	formData.append("files", files);
+	callFileXhr(
+		document.getElementById("api-path").value.concat("/attach/a")
+		, "POST"
+		, formData
+		, (callback) => {
+			func(callback);
+		}
+	);
+};
+
