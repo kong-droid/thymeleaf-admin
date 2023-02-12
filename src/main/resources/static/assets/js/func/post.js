@@ -9,14 +9,15 @@ const getPosts = (currentPage) => {
 	document.querySelector("#posts").innerHTML = "";
 			
 	callXhr(
-		document.getElementById('api-path').value.concat('/post/r').concat(`?page=${pageInfo.currentPage}&size=${pageInfo.pageSize}`)
+		document.getElementById('api-path').value.concat('/post/r')
 		, 'POST' 
-    	, { boardSeq : boardSeq }
+    	, { search : { page : pageInfo.currentPage, size : pageInfo.pageSize, delYn : 'N' }, boardSeq : boardSeq }
     	, (callback) => {
 			if(callback.data.totalCount > 0 ) {
-				callback.data.posts.forEach(item => {
+				callback.data.posts.forEach((item, index) => {
 					document.getElementById('posts').innerHTML += 
 						`<tr>
+							<td class="align-middle text-center">${index + 1}</td>
 							<td class="align-middle text-center">${item.postSeq}</td>
 							<td class="align-middle text-center">${item.title}</td>
 							<td class="align-middle text-center">${item.periodStartDt !== null ? item.periodStartDt.split("T")[0] : "미지정" } ~ ${ item.periodEndDt !== null ? item.periodEndDt.split("T")[0] : "미지정"}</td>
@@ -98,7 +99,5 @@ const getPost = () => {
 				document.getElementById('use-yn').checked = true;
 			}
 		}
-	);
-	
-		
+	);	
 }

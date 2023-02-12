@@ -11,17 +11,17 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/post")
 public class PostController {
 
-	@GetMapping("/{boardSeq}")
+    @RequestMapping("/{boardSeq}")
 	public String notice(@PathVariable String boardSeq) {
 		return "post/post";
 	}
 		
-	@PostMapping("/handle")
+	@RequestMapping("/handle")
 	public String postHandleByAdd() {
 		return "post/post_edit";
 	}
 	
-	@PostMapping("/handle/{postSeq}")
+	@RequestMapping("/handle/{postSeq}")
     public ModelAndView postHandleByEdit(@PathVariable String postSeq) {
 	    ModelAndView mv = new ModelAndView();
 	    mv.addObject("postSeq", postSeq);

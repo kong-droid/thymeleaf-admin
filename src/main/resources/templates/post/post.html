@@ -34,7 +34,8 @@
 									<table class="table align-items-center">
 										<thead>
 											<tr>
-												<th class="text-center text-secondary font-weight-bolder opacity-7">게시글 번호</th>
+												<th class="text-center text-secondary font-weight-bolder opacity-7">번호</th>
+												<th class="text-center text-secondary font-weight-bolder opacity-7">게시글 고유번호</th>
 												<th class="text-center text-secondary font-weight-bolder opacity-7">제목</th>
 												<th class="text-center text-secondary font-weight-bolder opacity-7">게시 기간</th>
 												<th class="text-center text-secondary font-weight-bolder opacity-7">등록일</th>
@@ -60,7 +61,7 @@
 		</main>
 		<script src="../assets/js/func/post.js"></script>
 		<script type="text/javascript">
-			let boardSeq = window.location.pathname.split("/post/")[1];
+			let boardSeq = window.location.href.split("boardSeq=")[1];
 			console.log("boardSeq", boardSeq);
 			document.addEventListener('DOMContentLoaded', () => {
 				getBoardTitle();
