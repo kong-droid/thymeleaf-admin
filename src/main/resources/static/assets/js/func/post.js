@@ -61,23 +61,28 @@ const movePage = ( postSeq ) => {
 
 // DELETE
 const deletePost = ( postSeq ) => {
+	let postId = postSeq === null ? document.getElementById('post-seq').value : postSeq;
 	callXhr(
 		document.getElementById('api-path').value.concat(`/post/d-l`)
 		, 'POST' 
     	, { 
-			postSeq : postSeq
+			postSeq : postId
 			, handle : { 
 				memberSeq : getCookie('memberSeq') 
 			}
 		}
     	, (callback) => {
-			alert(callback.message);
-			location.reload();
+			alert('Invalid Error.');
+			if(postSeq !== null) {
+				location.reload();	
+			} else {
+				history.back(-1);
+			}
 		}
 	);
 };
 
-
+// Read Post
 const getPost = () => {
 	callXhr(
 		document.getElementById('api-path').value.concat(`/post/r/${postSeq}`)
@@ -100,4 +105,21 @@ const getPost = () => {
 			}
 		}
 	);	
-}
+	document.getElementById('delete-post').style.display = 'inline';
+};
+
+// Add & Modify
+const handlePost = () => {
+	let title = document.getElementById('title').value;
+	let content = document.getElementsByClassName('ProseMirror toastui-editor-contents')[0].innerText;
+	let periodStartDt = document.getElementById('period-start-dt').value;
+	let periodEndDt = document.getElementById('period-end-dt').value;
+	let noticeYn = document.getElementById('notice-yn').checked === true ? 'Y' : 'N';
+	let secretYn = document.getElementById('secret-yn').checked === true ? 'Y' : 'N';
+	let useYn = document.getElementById('use-yn').checked === true ? 'Y' : 'N';
+	
+	let callParam = {
+		
+	}
+	
+};

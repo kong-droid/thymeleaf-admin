@@ -26,6 +26,11 @@
 							<div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3" id="post-title"></div>
 						</div>
 	            		<div class="card-body px-0 pb-2">
+	            			<div class="row g-3 my-2" style="padding-left: 2%; padding-right: 2%;">
+		            			<div align="left" class="col-md-2">
+		            				<button class="btn btn-warning" onclick="history.back(-1)"><i class="fa fa-arrow-left"></i>&nbsp;Back</button>
+		            			</div>	            			
+	            			</div>
 			            	<div class="row g-3 my-2" style="padding-left: 2%; padding-right: 2%;">
 				            	<div class="col-md-1">
 			                  		<label class="form-label" for="title">제목</label>
@@ -91,8 +96,21 @@
 									<div class="input-group input-group-outline">
 										<input type="file" class="form-control" id="file" multiple/>
 									</div>
-			                    </div>
-			            	</div>	            	               	 	                 	                  	                  	
+								</div>
+			            	</div>
+			            	<div class="row g-3 my-2" style="padding-left: 2%; padding-right: 2%;">
+			            		<div class="col-md-1"></div>
+			            		<div class="col-md-11">
+			            			<label style="cursor: pointer;" onclick="removeFile();">파일명 후후&emsp;<i class="fa fa-trash text-danger"></i></label>
+			            		</div>
+			            	</div>
+			            	<div class="row g-3 my-2" style="padding-left: 2%; padding-right: 2%;">
+				            	<div class="col-md-10"></div>
+								<div class="col-md-2" align="right">
+									<button class="btn btn-success" onclick="handlePost();"><i class="fa fa-pencil"></i>&nbsp;SAVE</button>
+									<button class="btn btn-danger" id="delete-post" onclick="deletePost(null);" style="display: none;"><i class="fa fa-trash"></i>&nbsp;DELETE</button>
+								</div>
+			            	</div>			            		            	               	 	                 	                  	                  	
 						</div>
 					</div>
 				</div>
@@ -110,10 +128,10 @@
 		document.addEventListener('DOMContentLoaded', () => {
 			loadEditor();
 			if(postSeq !== "") {
-				postTitle.innerHTML = `<h6 class="text-white ps-3" >수정</h6>`;
+				postTitle.innerHTML = `<h6 class="text-white ps-3" >Edit</h6>`;
 				getPost();
 			} else {
-				postTitle.innerHTML = `<h6 class="text-white ps-3" >등록</h6>`;
+				postTitle.innerHTML = `<h6 class="text-white ps-3" >Add</h6>`;
 			}
 		});
 	</script>

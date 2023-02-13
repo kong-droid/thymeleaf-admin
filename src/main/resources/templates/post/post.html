@@ -28,7 +28,7 @@
 							</div>
 							<div class="card-body px-0 pb-2">
 								<div align="right" style="margin-right: 20px;">
-									<button type="button" class="btn btn-primary" id="post-add" onclick="movePage()">Add</button>
+									<button class="btn btn-primary" id="post-add" onclick="movePage()">Add</button>
 								</div>
 								<div class="table-responsive p-0">
 									<table class="table align-items-center">
@@ -62,7 +62,6 @@
 		<script src="../assets/js/func/post.js"></script>
 		<script type="text/javascript">
 			let boardSeq = window.location.href.split("boardSeq=")[1];
-			console.log("boardSeq", boardSeq);
 			document.addEventListener('DOMContentLoaded', () => {
 				getBoardTitle();
 				getPosts();
