@@ -20,8 +20,8 @@ const getPosts = (currentPage) => {
 							<td class="align-middle text-center">${index + 1}</td>
 							<td class="align-middle text-center">${item.postSeq}</td>
 							<td class="align-middle text-center">${item.title}</td>
-							<td class="align-middle text-center">${item.periodStartDt !== null ? item.periodStartDt.split("T")[0] : "미지정" } ~ ${ item.periodEndDt !== null ? item.periodEndDt.split("T")[0] : "미지정"}</td>
-							<td class="align-middle text-center">${item.createdDt !== null && item.createdDt.split("T")[0]}</td>
+							<td class="align-middle text-center">${item.periodStartDt !== undefined && item.periodStartDt !== null ? item.periodStartDt.split("T")[0] : "미지정" } ~ ${ item.periodEndDt !== undefined && item.periodEndDt !== null ? item.periodEndDt.split("T")[0] : "미지정"}</td>
+							<td class="align-middle text-center">${item.createdDt !== undefined && item.createdDt.split("T")[0]}</td>
 							<td class="align-middle text-center">${item.memberinfo.name}</td>
 							<td class="align-middle text-center" style="padding-top:1%;">
 								<a href="javascript:void(0)" class="btn btn-success btn-sm" id="board-update-btn" onclick="movePage(${item.postSeq})">Update</a>
@@ -56,7 +56,7 @@ const getBoardTitle = () => {
 
 // MOVE
 const movePage = ( postSeq ) => {
-	location.href = postSeq === undefined ? '/post/handle' : `/post/handle/${postSeq}`;
+	location.href = postSeq === undefined ? `/post/handle/${boardSeq}` : `/post/handle/${boardSeq}/${postSeq}`;
 };
 
 // DELETE
@@ -72,7 +72,6 @@ const deletePost = ( postSeq ) => {
 			}
 		}
     	, (callback) => {
-			alert('Invalid Error.');
 			if(postSeq !== null) {
 				location.reload();	
 			} else {
@@ -84,6 +83,7 @@ const deletePost = ( postSeq ) => {
 
 // Read Post
 const getPost = () => {
+	
 	callXhr(
 		document.getElementById('api-path').value.concat(`/post/r/${postSeq}`)
 		, 'GET' 
@@ -105,11 +105,38 @@ const getPost = () => {
 			}
 		}
 	);	
+	
+	let callParam = {
+		tbName: "tb_post"
+		, tbSeq: postSeq
+		, tbType: "post_attachment"
+	};
+	
+	callXhr(
+		document.getElementById('api-path').value.concat('/attach/r')
+		, 'POST' 
+    	, callParam
+    	, (callback) => {
+			console.log("attachLength ::: ", callback.data.attaches.length);
+			if(callback.data.attaches.length > 0) {
+				callback.data.attaches.forEach(item => {
+					document.getElementById('post-files').innerHTML +=
+					`<div id=${"remove-file-" + item.attachSeq }>
+						<label style="cursor: pointer;" onclick="downloadFile('${item.realName}', '${item.attachSeq}');">${item.realName}&emsp;</label>
+						<i class="fa fa-trash text-danger" onclick="removeFile('${item.attachSeq}');"></i>
+					</div>`; 
+				});					
+			};
+		}
+	);	
+		
 	document.getElementById('delete-post').style.display = 'inline';
 };
 
 // Add & Modify
 const handlePost = () => {
+	let postSeq = document.getElementById('post-seq').value;
+	let boardSeq = document.getElementById('board-seq').value;
 	let title = document.getElementById('title').value;
 	let content = document.getElementsByClassName('ProseMirror toastui-editor-contents')[0].innerText;
 	let periodStartDt = document.getElementById('period-start-dt').value;
@@ -117,9 +144,50 @@ const handlePost = () => {
 	let noticeYn = document.getElementById('notice-yn').checked === true ? 'Y' : 'N';
 	let secretYn = document.getElementById('secret-yn').checked === true ? 'Y' : 'N';
 	let useYn = document.getElementById('use-yn').checked === true ? 'Y' : 'N';
+	let files = document.getElementById('file').files;
 	
 	let callParam = {
-		
-	}
+		postSeq : postSeq
+		, boardSeq : boardSeq
+		, title : title
+		, noticeYn : noticeYn
+		, secretYn : secretYn
+		, handle : {
+			content : content
+			, periodStartDt : periodStartDt
+			, periodEndDt : periodEndDt
+			, useYn : useYn
+			, delYn : 'N'
+			, memberSeq : getCookie('memberSeq')
+		}
+	};
 	
+	callXhr(
+		document.getElementById('api-path').value.concat(postSeq === '' ? '/post/a' : '/post/m')
+		, 'POST' 
+    	, callParam
+    	, (callback) => {
+			if(callback.status === 200) {
+				if(files.length > 0) {
+					commonFileUpload(
+						'tb_post'
+						, callback.data.postSeq
+						, 'post_attachment'
+						, getCookie('memberSeq')
+						, files[0]
+						, (response) => {
+							response.data.attached.forEach(item => {
+								document.getElementById('post-files').innerHTML +=
+								`<div id=${"remove-file-" + item.attachSeq }>
+									<label style="cursor: pointer;" onclick="downloadFile('${item.realName}', '${item.attachSeq}');">${item.realName}&emsp;</label>
+									<i class="fa fa-trash text-danger" onclick="removeFile('${item.attachSeq}');"></i>
+								</div>`; 
+							}) 							
+						}
+					);
+				}
+				alert('저장되었습니다.');
+			}
+		}
+	);
 };

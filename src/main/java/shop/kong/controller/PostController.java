@@ -16,13 +16,16 @@ public class PostController {
 		return "post/post";
 	}
 		
-	@RequestMapping("/handle")
-	public String postHandleByAdd() {
-		return "post/post_edit";
+	@RequestMapping("/handle/{boardSeq}")
+	public ModelAndView postHandleByAdd(@PathVariable String boardSeq) {
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("boardSeq", boardSeq);
+        mv.setViewName("post/post_edit");
+        return mv;
 	}
 	
-	@RequestMapping("/handle/{postSeq}")
-    public ModelAndView postHandleByEdit(@PathVariable String postSeq) {
+	@RequestMapping("/handle/{boardSeq}/{postSeq}")
+    public ModelAndView postHandleByEdit(@PathVariable String boardSeq, @PathVariable String postSeq) {
 	    ModelAndView mv = new ModelAndView();
 	    mv.addObject("postSeq", postSeq);
 	    mv.setViewName("post/post_edit");

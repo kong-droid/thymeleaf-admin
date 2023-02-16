@@ -23,6 +23,9 @@ const callXhr = (url, method, params, callback) => {
 			}
       	}
     };
+    xhr.onerror = (e) => {
+		console.error(e);
+	}
 };
 
 const callFileXhr = (url, method, params, callback) => {

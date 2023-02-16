@@ -171,3 +171,35 @@ const commonFileUpload = (tbName, tbSeq, tbType, memberSeq, files, func) => {
 	);
 };
 
+const downloadFile = ( fileName, attachSeq ) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', document.getElementById("api-path").value.concat(`/attach/r/${attachSeq}`));
+    xhr.send();    
+    xhr.responseType = 'blob';
+    xhr.onload = () => {
+        var a = document.createElement('a');
+        a.href = window.URL.createObjectURL(xhr.response);
+        a.download = fileName;
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        delete a;
+    };
+    xhr.onerror = (e) => {
+		console.error(e);
+	};   
+};
+
+const removeFile = ( attachSeq ) => {
+	if(confirm('파일을 삭제하시겠습니까?')) {
+	  	callXhr(
+	    	document.getElementById('api-path').value.concat(`/attach/d-p/${attachSeq}`), 
+	    	'POST',  
+	    	null, 
+	    	(callback) => {
+				alert('삭제되었습니다.');
+				document.getElementById("remove-file-" + attachSeq).remove();
+			}  
+	  	);   
+	};
+};

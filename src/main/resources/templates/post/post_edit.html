@@ -23,6 +23,7 @@
 					<div class="card my-4">
 						<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
 							<input type="hidden" name="post-seq" id="post-seq" th:value="${postSeq}"/>
+							<input type="hidden" name="board-seq" id="board-seq" th:value="${boardSeq}"/>
 							<div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3" id="post-title"></div>
 						</div>
 	            		<div class="card-body px-0 pb-2">
@@ -100,9 +101,7 @@
 			            	</div>
 			            	<div class="row g-3 my-2" style="padding-left: 2%; padding-right: 2%;">
 			            		<div class="col-md-1"></div>
-			            		<div class="col-md-11">
-			            			<label style="cursor: pointer;" onclick="removeFile();">파일명 후후&emsp;<i class="fa fa-trash text-danger"></i></label>
-			            		</div>
+			            		<div class="col-md-11" id="post-files"></div>
 			            	</div>
 			            	<div class="row g-3 my-2" style="padding-left: 2%; padding-right: 2%;">
 				            	<div class="col-md-10"></div>

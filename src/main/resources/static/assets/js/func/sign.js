@@ -39,7 +39,7 @@ const signIn = () => {
 						setCookie("profile", escape(callback.data.profile.toLowerCase()), 1);
 					}
 					
-					location.href = '/post/notice?boardSeq=1';
+					location.href = '/post/1';
 				}
 			} else {
 				alert("아이디 혹은 비밀번호가 틀렸습니다.");
@@ -125,8 +125,8 @@ const signUp = () => {
 					    	document.getElementById('api-path').value.concat('/member/m'), 
 					    	'POST', 
 					    	{
-								handle 		: 	{ memberSeq : callback.data.memberSeq } 
-					    		, profile	:	func.data.attached[0].fullPath
+								handle : { memberSeq : callback.data.memberSeq } 
+					    		, profile : func.data.attached[0].fullPath
 					    	},
 					    	() => {
 								alert("회원가입 되었습니다.");
@@ -140,8 +140,7 @@ const signUp = () => {
 				location.href = "/";
 			}
     	}  
-	);
-			
+	);	
 };
 
 
