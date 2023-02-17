@@ -24,31 +24,32 @@ const getPosts = (currentPage) => {
 							<td class="align-middle text-center">${item.createdDt !== undefined && item.createdDt.split("T")[0]}</td>
 							<td class="align-middle text-center">${item.memberinfo.name}</td>
 							<td class="align-middle text-center" style="padding-top:1%;">
-								<a href="javascript:void(0)" class="btn btn-success btn-sm" id="board-update-btn" onclick="movePage(${item.postSeq})">Update</a>
-								<a href="javascript:void(0)" class="btn btn-danger btn-sm" id="board-delete-btn" onclick="deletePost(${item.postSeq})">Delete</a>
-							<td>
+								<button class="btn btn-success btn-sm" id="board-update-btn" onclick="movePage(${item.postSeq})">Update</button>
+								<button class="btn btn-danger btn-sm" id="board-delete-btn" onclick="deletePost(${item.postSeq}, null)">Delete</button>
+							</td>
 						</tr>`;
 				});
 			} else {
-				document.getElementById('posts').innerHTML += `<tr><td col="6">데이터가 없습니다.</td></tr>`;
+				document.getElementById('posts').innerHTML += '<tr><td col="6">데이터가 없습니다.</td></tr>';
 			}
 
 			// 페이지네이션 함수
-			getPageNation(callback.data.totalCount, pageInfo.currentPage, pageInfo.pageSize, "getPosts");
+			getPageNation(callback.data.totalCount, pageInfo.currentPage, pageInfo.pageSize, 'getPosts');
 		}
   	  );
 };
 
 const getBoardTitle = () => {
+	let boardTitle = document.getElementById('board-title');
 	switch (boardSeq) {
 		case "1":
-			document.getElementById('board-title').innerHTML = `Notice`;
+			boardTitle.innerHTML = 'Notice';
 		break;
 		case "2":
-			document.getElementById('board-title').innerHTML = 'Event';
+			boardTitle.innerHTML = 'Event';
 		break;
 		case "3":
-			document.getElementById('board-title').innerHTML = 'FAQ';
+			boardTitle.innerHTML = 'FAQ';
 		break;
 	}
 };
@@ -60,10 +61,10 @@ const movePage = ( postSeq ) => {
 };
 
 // DELETE
-const deletePost = ( postSeq ) => {
+const deletePost = ( postSeq, boardSeq ) => {
 	let postId = postSeq === null ? document.getElementById('post-seq').value : postSeq;
 	callXhr(
-		document.getElementById('api-path').value.concat(`/post/d-l`)
+		document.getElementById('api-path').value.concat('/post/d-l')
 		, 'POST' 
     	, { 
 			postSeq : postId
@@ -72,10 +73,10 @@ const deletePost = ( postSeq ) => {
 			}
 		}
     	, (callback) => {
-			if(postSeq !== null) {
+			if(boardSeq !== null) {
 				location.reload();	
 			} else {
-				history.back(-1);
+				location.href = `/post/${boardSeq};`
 			}
 		}
 	);
@@ -107,9 +108,9 @@ const getPost = () => {
 	);	
 	
 	let callParam = {
-		tbName: "tb_post"
+		tbName: 'tb_post'
 		, tbSeq: postSeq
-		, tbType: "post_attachment"
+		, tbType: 'post_attachment'
 	};
 	
 	callXhr(
@@ -117,7 +118,6 @@ const getPost = () => {
 		, 'POST' 
     	, callParam
     	, (callback) => {
-			console.log("attachLength ::: ", callback.data.attaches.length);
 			if(callback.data.attaches.length > 0) {
 				callback.data.attaches.forEach(item => {
 					document.getElementById('post-files').innerHTML +=
@@ -137,25 +137,46 @@ const getPost = () => {
 const handlePost = () => {
 	let postSeq = document.getElementById('post-seq').value;
 	let boardSeq = document.getElementById('board-seq').value;
-	let title = document.getElementById('title').value;
-	let content = document.getElementsByClassName('ProseMirror toastui-editor-contents')[0].innerText;
-	let periodStartDt = document.getElementById('period-start-dt').value;
-	let periodEndDt = document.getElementById('period-end-dt').value;
+	let title = document.getElementById('title');
+	let content = document.getElementsByClassName('ProseMirror toastui-editor-contents');
+	let periodStartDt = document.getElementById('period-start-dt');
+	let periodEndDt = document.getElementById('period-end-dt');
 	let noticeYn = document.getElementById('notice-yn').checked === true ? 'Y' : 'N';
 	let secretYn = document.getElementById('secret-yn').checked === true ? 'Y' : 'N';
 	let useYn = document.getElementById('use-yn').checked === true ? 'Y' : 'N';
 	let files = document.getElementById('file').files;
 	
+	if (isEmpty(title.value)) {
+		onFocus(title, '게시글 제목을 입력하세요.');
+		return;
+	}
+	
+	if (!isEmpty(periodStartDt.value) && !isEmpty(periodEndDt.value)) {
+		if(periodStartDt.value >= periodEndDt.value) {
+			onFocus(periodStartDt, '게시 시작일은 게시 종료일의 범위 내여야 합니다.');
+			return false;
+		}
+	}
+	
+	if(content[0].innerText.length <= 1){
+		if(content[0].innerText.length === 1) {
+			onFocus(content, '게시글은 한 글자만 적을 수 없습니다.');
+		} else {
+			onFocus(content, '게시글 내용을 입력하세요.');
+		}
+		return;
+	}
+	
 	let callParam = {
 		postSeq : postSeq
 		, boardSeq : boardSeq
-		, title : title
+		, title : title.value
 		, noticeYn : noticeYn
 		, secretYn : secretYn
 		, handle : {
-			content : content
-			, periodStartDt : periodStartDt
-			, periodEndDt : periodEndDt
+			content : content[0].innerText
+			, periodStartDt : periodStartDt.value
+			, periodEndDt : periodEndDt.value
 			, useYn : useYn
 			, delYn : 'N'
 			, memberSeq : getCookie('memberSeq')

@@ -12,7 +12,7 @@
  */
 const getPageNation = (totalCount, currentPage, pageSize, func) => {
     const pageUnit = 5;
-  	let pageHtml = "";
+  	let pageHtml = '';
     
   	// 페이지네이션
   	if(totalCount > 0) {
@@ -30,7 +30,7 @@ const getPageNation = (totalCount, currentPage, pageSize, func) => {
         }
         
         pageHtml +=  "<a href='#' id='" + (totalPage-1) + "' class='btn btn-primary' onclick='" + func + "(" + (totalPage-1) + ")'> >> </a>";
-        document.querySelector("#paging").innerHTML = pageHtml;
+        document.querySelector('#paging').innerHTML = pageHtml;
         
     }
 };
@@ -51,7 +51,7 @@ const getCookie = (cookieName) => {
 			// 값을 얻어내기 위해 시작 인덱스 조절
 			startIndex += cookieName.length;
 			// 값을 얻어내기 위해 종료 인덱스 추출
-			endIndex = cookie.indexOf(";", startIndex);
+			endIndex = cookie.indexOf(';', startIndex);
 			// 만약 종료 인덱스를 못찾게 되면 쿠키 전체길이로 설정
 			if( endIndex == -1) endIndex = cookie.length;
 			// 쿠키값을 추출하여 리턴
@@ -75,7 +75,7 @@ const getCookie = (cookieName) => {
 const setCookie = (cookieName, cookieValue, expireDate) => {
 	let today = new Date();
 	today.setDate(today.getDate() + parseInt(expireDate));
-	document.cookie = cookieName + "=" + escape( cookieValue ) + "; path=/; expires=" + today.toGMTString() + ";"
+	document.cookie = cookieName + '=' + escape( cookieValue ) + '; path=/; expires=' + today.toGMTString() + ';'
 };
 
 /**
@@ -85,7 +85,7 @@ const deleteCookie = (cookieName) => {
 	let expireDate = new Date();
 	//어제 날짜를 쿠키 소멸 날짜로 설정한다.
 	expireDate.setDate( expireDate.getDate() - 1 );
-	document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString() + "; path=/";
+	document.cookie = cookieName + '= ' + '; expires=' + expireDate.toGMTString() + '; path=/';
 };
 
 
@@ -156,14 +156,14 @@ const checkPassword = (str) => {
 
 const commonFileUpload = (tbName, tbSeq, tbType, memberSeq, files, func) => {
 	const formData = new FormData();
-	formData.append("tbName", tbName);
-	formData.append("tbSeq", tbSeq);
-	formData.append("tbType", tbType);
-	formData.append("memberSeq", memberSeq);
-	formData.append("files", files);
+	formData.append('tbName', tbName);
+	formData.append('tbSeq', tbSeq);
+	formData.append('tbType', tbType);
+	formData.append('memberSeq', memberSeq);
+	formData.append('files', files);
 	callFileXhr(
-		document.getElementById("api-path").value.concat("/attach/a")
-		, "POST"
+		document.getElementById('api-path').value.concat('/attach/a')
+		, 'POST'
 		, formData
 		, (callback) => {
 			func(callback);
@@ -173,7 +173,7 @@ const commonFileUpload = (tbName, tbSeq, tbType, memberSeq, files, func) => {
 
 const downloadFile = ( fileName, attachSeq ) => {
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', document.getElementById("api-path").value.concat(`/attach/r/${attachSeq}`));
+    xhr.open('POST', document.getElementById('api-path').value.concat(`/attach/r/${attachSeq}`));
     xhr.send();    
     xhr.responseType = 'blob';
     xhr.onload = () => {
@@ -198,8 +198,12 @@ const removeFile = ( attachSeq ) => {
 	    	null, 
 	    	(callback) => {
 				alert('삭제되었습니다.');
-				document.getElementById("remove-file-" + attachSeq).remove();
+				document.getElementById('remove-file-' + attachSeq).remove();
 			}  
 	  	);   
 	};
+};
+
+const historyBack = (url, sequence) => {
+	location.href = url + sequence;
 };

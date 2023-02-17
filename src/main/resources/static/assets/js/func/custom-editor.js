@@ -1,7 +1,7 @@
 const loadEditor = () => {
 	const Editor = toastui.Editor;
 	const editor = new Editor({
-		el: document.querySelector('#content'),
+		el: document.getElementById('content'),
 		height: '500px',
 		previewStyle: 'tab',
 		initialEditType: 'wysiwyg',
