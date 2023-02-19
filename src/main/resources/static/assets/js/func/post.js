@@ -22,7 +22,7 @@ const getPosts = (currentPage) => {
 							<td class="align-middle text-center">${item.title}</td>
 							<td class="align-middle text-center">${item.periodStartDt !== undefined && item.periodStartDt !== null ? item.periodStartDt.split("T")[0] : "미지정" } ~ ${ item.periodEndDt !== undefined && item.periodEndDt !== null ? item.periodEndDt.split("T")[0] : "미지정"}</td>
 							<td class="align-middle text-center">${item.createdDt !== undefined && item.createdDt.split("T")[0]}</td>
-							<td class="align-middle text-center">${item.memberinfo.name}</td>
+							<td class="align-middle text-center">${item.memberinfo !== null ? item.memberinfo.name : 'unknown'}</td>
 							<td class="align-middle text-center" style="padding-top:1%;">
 								<button class="btn btn-success btn-sm" id="board-update-btn" onclick="movePage(${item.postSeq})">Update</button>
 								<button class="btn btn-danger btn-sm" id="board-delete-btn" onclick="deletePost(${item.postSeq}, null)">Delete</button>

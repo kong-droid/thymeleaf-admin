@@ -17,110 +17,83 @@
 			th:include="./layout/nav"
 		>
 		</nav>
-		<div class="container-fluid py-4">
-			<div class="row">
-				<div class="col-12">
-					<div class="card my-4">
-						<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-							<div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-								<h6 class="text-white ps-3">MyPage</h6>
-							</div>
-						</div>
-	            		<div class="card-body px-0 pb-2">
-		                  	<div class="row g-3 my-2" style="padding-left: 2%; padding-right: 2%;">
-			                  	<div class="col-md-1">
-		                  			<label class="form-label" for="period-start-dt">게시(시작일)</label>
-		                  		</div>
-								<div class="col-md-4">
-									<div class="input-group input-group-outline">
-			                    		<input type="datetime-local" class="form-control" id="period-start-dt"/>
-								    </div>
-								</div>
-			                  	<div class="col-md-2" align="center">~</div>
-			                  	<div class="col-md-1">
-		                  			<label class="form-label" for="period-end-dt">게시(종료일)</label>
-		                  		</div>        		
-								<div class="col-md-4">
-									<div class="input-group input-group-outline">
-			                    		<input type="datetime-local" class="form-control" id="period-end-dt"/>
-								    </div>
-								</div>
-		                  	</div>	  			                  	            	          			
-			            	<div class="row g-3 my-2" style="padding-left: 2%; padding-right: 2%;">
-				            	<div class="col-md-1">
-			                  		<label class="form-label" for="title">제목</label>
-			                  	</div>
-								<div class="col-md-11">
-									<div class="input-group input-group-outline">
-										<input type="text" class="form-control" id="title" />
-									</div>
-			                    </div>
-			            	</div>    
-		                  	<div class="row g-2 my-2" style="padding-left: 2%; padding-right: 2%;">
-								<div class="col-md-1">
-									<label class="form-label" for="content">내용</label>
-								</div>
-								<div class="col-md-11" id="content"></div>		
-		                  	</div>
-							<div class="row g-2 my-2" style="padding-left: 2%; padding-right: 2%;">
-								<div class="col-md-1">
-									<label class="form-label" for="notice-yn">공지글 여부</label>
-								</div>
-								<div class="col-md-3 form-check">
-		                    		<input class="form-check-input" type="checkbox" id="notice-yn" name="notice-yn"/>
-								</div>		
-		                  	</div>  	
-		                  	<div class="row g-2 my-2" style="padding-left: 2%; padding-right: 2%;">
-								<div class="col-md-1">
-									<label class="form-label" for="secret-yn">비밀글 여부</label>
-								</div>	
-								<div class="col-md-3 form-check">
-		                    		<input class="form-check-input" type="checkbox" id="secret-yn" name="secret-yn"/>
-								</div>		                  	
-		                  	</div>	      
-		                  	<div class="row g-2 my-2" style="padding-left: 2%; padding-right: 2%;">
-								<div class="col-md-1">
-		                    		<label class="form-label" for="use-yn">사용 여부</label>
-								</div>		
-								<div class="col-md-3 form-check">
-		                    		<input class="form-check-input" type="checkbox" id="use-yn" name="use-yn">
-		                    	</div>		                  	
-		                  	</div>		                  	             
-			            	<div class="row g-3 my-2" style="padding-left: 2%; padding-right: 2%;">
-				            	<div class="col-md-1">
-			                  		<label class="form-label" for="remark">파일첨부</label>
-			                  	</div>
-								<div class="col-md-11">
-									<div class="input-group input-group-outline">
-										<input type="file" class="form-control" id="file" multiple/>
-									</div>
-								</div>
-			            	</div>			            	
-			            	<div class="row g-3 my-2" style="padding-left: 2%; padding-right: 2%;">
-			            		<div class="col-md-1"></div>
-			            		<div class="col-md-11" id="post-files"></div>
-			            	</div>
-			            	<div class="row g-3 my-2" style="padding-left: 2%; padding-right: 2%;">
-				            	<div class="col-md-8"></div>
-								<div class="col-md-4" align="right">
-									<button class="btn btn-success" onclick="handlePost();"><i class="fa fa-pencil"></i>&nbsp;SAVE</button>
-									<button class="btn btn-danger" id="delete-post" th:onclick="deletePost([[${postSeq}]], [[${boardSeq}]]);" style="display: none;"><i class="fa fa-trash"></i>&nbsp;DELETE</button>
-								</div>
-			            	</div>			            		            	               	 	                 	                  	                  	
-						</div>
-					</div>
-				</div>
+		<div class="container-fluid px-2 px-md-4">
+			<div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
+				<span class="mask  bg-gradient-primary  opacity-6"></span>
 			</div>
-		</div> 
+			<div class="card card-body mx-3 mx-md-4 mt-n6">
+				<div class="row g-3 my-2">
+					<div class="col-md-1">
+					  	<div class="avatar avatar-xl position-relative" id="profile-image">
+					    	<img src="/assets/img/icons/user-icon.png" onerror="/assets/img/icons/user-icon.png" alt="profile_image" class="w-100 border-radius-lg shadow-sm"/>
+						</div>						
+					</div>		
+					<div class="col-md-1">
+						<label class="form-label" for="profile">Profile</label>
+					</div>
+					<div class="col-md-10">
+						<div class="input-group input-group-outline">
+							<input type="file" class="form-control" id="profile" accept=".gif, .png, .jpg"/>
+						</div>
+					</div>							 
+		   		</div>		
+	           	<div class="row g-3 my-2">
+	            	<div class="col-md-2">
+                  		<label class="form-label" for="name">Name</label>
+                  	</div>
+					<div class="col-md-10">
+						<div class="input-group input-group-outline">
+							<input type="text" class="form-control" id="name" />
+						</div>
+                    </div>
+	           	</div>	
+	           	<div class="row g-3 my-2">
+	            	<div class="col-md-2">
+                  		<label class="form-label" for="password">Password</label>
+                  	</div>
+					<div class="col-md-10">
+						<div class="input-group input-group-outline">
+							<input type="password" class="form-control" id="password"/>
+						</div>
+                    </div>
+	           	</div>		           	
+	           	<div class="row g-3 my-2">
+	            	<div class="col-md-2">
+                  		<label class="form-label" for="email">Email</label>
+                  	</div>
+					<div class="col-md-10">
+						<div class="input-group input-group-outline">
+							<input type="email" class="form-control" id="email" />
+						</div>
+                    </div>
+	           	</div>		  
+	           	<div class="row g-3 my-2">
+	            	<div class="col-md-2">
+                  		<label class="form-label" for="mobile">Tel</label>
+                  	</div>
+					<div class="col-md-10">
+						<div class="input-group input-group-outline">
+							<input type="text" class="form-control" id="mobile" />
+						</div>
+                    </div>
+	           	</div>		        	           	   	         				   	
+	           	<div class="row g-3 my-2">
+	            	<div class="col-md-8"></div>
+					<div class="col-md-4" align="right">
+						<button class="btn btn-success" onclick="handleUserInfo(false);"><i class="fa fa-pencil"></i>&nbsp;edit</button>
+						<button class="btn btn-danger" onclick="withdrawal()"><i class="fa fa-trash"></i>&nbsp;withdrawal</button>
+					</div>
+	           	</div>				   			   	
+			</div>	
+		</div>
 		<!-- footer -->
 		<div class="container-fluid py-4">
 			<footer th:include="./layout/footer"></footer>
 		</div>
 	</main>
-	<script src="/assets/js/func/post.js"></script>
 	<script type="text/javascript">
 		document.addEventListener('DOMContentLoaded', () => {
-			loadEditor();
+			getUserInfo();
 		});
 	</script>
 </body>
