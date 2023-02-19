@@ -1,12 +1,17 @@
----
-
 spring:
   profiles:
     active: local
-
----
-
-spring:
-  profiles:
-    active: prod
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode:  HTML
+    cache: false
+    encoding: UTF-8
+    check-template-location: true
+    
+server:
+  port : 2000
+  error:
+    whitelabel:
+      enabled: false    
     

@@ -174,11 +174,14 @@ const getUserInfo = () => {
 			document.getElementById('name').value = callback.data.name;
 			document.getElementById('email').value = callback.data.email;
 			document.getElementById('mobile').value = callback.data.phone;
-			if(callback.data.profile === null || callback.data.profile === undefined) {
-				let userImage = document.getElementById('profile-image');
-				userImage.innerHTML = '';
+			let userImage = document.getElementById('profile-image');
+			if(callback.data.profile !== undefined) {
 				userImage.innerHTML =
-				`<img src="${callback.data.profile}" onerror="/assets/img/icons/user-icon.png" alt="profile_image" class="w-100 border-radius-lg shadow-sm"/>`;
+				`<img src="${callback.data.profile}" alt="profile_image" class="w-100 border-radius-lg shadow-sm"/>`;
+			} else {
+				userImage.innerHTML =
+				`<img src="/assets/img/icons/user-icon.png" alt="not_found_profile_image" class="w-100 border-radius-lg shadow-sm"/>`;
+			
 			}
 		}  
 	);

@@ -207,3 +207,17 @@ const removeFile = ( attachSeq ) => {
 const historyBack = (url, sequence) => {
 	location.href = url + sequence;
 };
+
+const getToday = () => {
+	const today = new Date();
+	const year = today.getFullYear();
+	const month = ('0' + (today.getMonth() + 1)).slice(-2);
+	const day = ('0' + today.getDate()).slice(-2);
+	return year + '-' + month  + '-' + day;
+};
+
+const enterKey = (func) => {
+	if (window.event.keyCode == 13) {
+		func();
+    }
+}
