@@ -9,10 +9,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @PropertySource(value = "classpath:/application-${spring.profiles.active}.yml")
 @SpringBootApplication
-public class ZeedecoFrontApplication {
+public class RestFrontApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ZeedecoFrontApplication.class, args);
+		SpringApplication.run(RestFrontApplication.class, args);
 	}
 
     @Bean
