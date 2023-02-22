@@ -1,5 +1,5 @@
 api:
-  path: https://api.kong-driod.shop
+  path: https://api.kong-driod.site
   
 front:
-  path: http://admin.zeedoco.shop
+  path: https://kong-driod.site

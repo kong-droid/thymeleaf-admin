@@ -1,5 +1,5 @@
 api:
-  path: http://localhost:1000
+  path: http://localhost:2000
   
 front:
-  path: http://localhost:2000
+  path: http://localhost:2100
