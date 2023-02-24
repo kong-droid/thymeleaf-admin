@@ -1,5 +1,5 @@
 api:
-  path: https://api.kong-driod.site
+  path: https://api.kong-droid.site
   
 front:
-  path: https://kong-driod.site
+  path: https://kong-droid.site

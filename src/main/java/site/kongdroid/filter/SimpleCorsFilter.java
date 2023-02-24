@@ -1,4 +1,4 @@
-package shop.kong.filter;
+package site.kongdroid.filter;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;

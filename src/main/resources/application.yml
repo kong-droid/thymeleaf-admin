@@ -1,6 +1,4 @@
 spring:
-  profiles:
-    active: local
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html

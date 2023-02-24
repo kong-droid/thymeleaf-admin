@@ -177,7 +177,7 @@ const getUserInfo = () => {
 			let userImage = document.getElementById('profile-image');
 			if(callback.data.profile !== undefined) {
 				userImage.innerHTML =
-				`<img src="${callback.data.profile}" alt="profile_image" class="w-100 border-radius-lg shadow-sm"/>`;
+				`<img src="${document.getElementById('api-path').value + callback.data.profile}" alt="profile_image" class="w-100 border-radius-lg shadow-sm"/>`;
 			} else {
 				userImage.innerHTML =
 				`<img src="/assets/img/icons/user-icon.png" alt="not_found_profile_image" class="w-100 border-radius-lg shadow-sm"/>`;

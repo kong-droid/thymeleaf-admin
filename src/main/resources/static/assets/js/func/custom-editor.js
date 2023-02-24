@@ -1,6 +1,8 @@
+let editor;
+ 
 const loadEditor = () => {
 	const Editor = toastui.Editor;
-	const editor = new Editor({
+	editor = new Editor({
 		el: document.getElementById('content'),
 		height: '500px',
 		previewStyle: 'tab',
@@ -26,7 +28,7 @@ const imageUploads = (blob, callbackImage) => {
 		, 'POST'
 		, formData
 		, (callback) => {
-			callbackImage(callback.data.attached[0].fullPath);
+			callbackImage(document.getElementById('api-path').value + callback.data.attached[0].fullPath);
 		}
 	);
 };

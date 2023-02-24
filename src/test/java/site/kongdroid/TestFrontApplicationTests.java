@@ -1,10 +1,10 @@
-package shop.zeedeco;
+package site.kongdroid;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ZeedecoFrontApplicationTests {
+class TestFrontApplicationTests {
 
 	@Test
 	void contextLoads() {

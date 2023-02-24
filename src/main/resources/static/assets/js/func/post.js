@@ -158,14 +158,11 @@ const handlePost = () => {
 		}
 	}
 	
-	if(content[0].innerText.length <= 1){
-		if(content[0].innerText.length === 1) {
-			onFocus(content, '게시글은 한 글자만 적을 수 없습니다.');
-		} else {
-			onFocus(content, '게시글 내용을 입력하세요.');
-		}
+	if(editor.getHTML() === "<p><br></p>"){
+		alert(content, '게시글을 입력하세요.');
 		return;
 	}
+	
 	
 	let callParam = {
 		postSeq : postSeq
@@ -174,7 +171,7 @@ const handlePost = () => {
 		, noticeYn : noticeYn
 		, secretYn : secretYn
 		, handle : {
-			content : content[0].innerText
+			content : editor.getHTML()
 			, periodStartDt : periodStartDt.value
 			, periodEndDt : periodEndDt.value
 			, useYn : useYn

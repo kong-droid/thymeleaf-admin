@@ -1,4 +1,4 @@
-package shop.kong;
+package site.kongdroid;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,12 +7,13 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@PropertySource(value = "classpath:/application-${spring.profiles.active}.yml")
+
 @SpringBootApplication
-public class RestFrontApplication {
+@PropertySource(value = "classpath:/application-${spring.profiles.active}.yml")
+public class TestFrontApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RestFrontApplication.class, args);
+		SpringApplication.run(TestFrontApplication.class, args);
 	}
 
     @Bean
