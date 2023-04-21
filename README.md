@@ -25,4 +25,4 @@ language : java, javaScript
 framework : spring boot
 view : thymeleaf
 ````````````````````````````````````````````````````
-6. [API github link](https://github.com/kong-droid/rest-api, "API")
+6. [github link](https://github.com/kong-droid, "github")
