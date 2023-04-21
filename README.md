@@ -14,10 +14,15 @@ https://www.creative-tim.com
 API : https://api.kong-droid.site/swagger-ui.html
 FRONT : https://kong-droid.site
 ````````````````````````````````````````````````````
-4. SKILL
+4. test ID/PASSWORD
+```````````````````````````````````````````````````
+ID : kong.frontend@gmail.com
+PASSWORD : board1234
+```````````````````````````````````````````````````
+5. SKILL
 ````````````````````````````````````````````````````
 language : java, javaScript
 framework : spring boot
 view : thymeleaf
 ````````````````````````````````````````````````````
-5. [API github link](https://github.com/kong-droid/rest-api, "API")
+6. [API github link](https://github.com/kong-droid/rest-api, "API")
