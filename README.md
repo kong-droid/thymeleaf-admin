@@ -1,4 +1,4 @@
-TEST-FRONT
+thymeleaf-admin
 ==========
 
 1. 작업 기간
@@ -25,4 +25,3 @@ language : java, javaScript
 framework : spring boot
 view : thymeleaf
 ````````````````````````````````````````````````````
-6. [github link](https://github.com/kong-droid, "github")
