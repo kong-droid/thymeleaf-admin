@@ -1,27 +1,23 @@
 thymeleaf-admin
 ==========
 
-1. 작업 기간
-``````````````````
-2022.12 ~ 2022.02
-``````````````````
-2. 무료 탬플릿 주소
+1. TEMPLATE ACCOUNT
 ````````````````````````````````````````````
 https://www.creative-tim.com
 ````````````````````````````````````````````
-3. DNS
+2. DNS
 ```````````````````````````````````````````````````
-API : https://api.kong-droid.site/swagger-ui.html
-FRONT : https://kong-droid.site
+API: https://api.kong-droid.site/swagger-ui.html
+FRONT: https://kong-droid.site
 ````````````````````````````````````````````````````
-4. test ID/PASSWORD
+3. SKILL
+````````````````````````````````````````````````````
+language: java 11, javaScript es6
+framework: spring boot 2.6.7
+view: thymeleaf
+````````````````````````````````````````````````````
+4. TEST ACCOUNT
 ```````````````````````````````````````````````````
-ID : kong.frontend@gmail.com
-PASSWORD : board1234
+ID: admin@kong-droid.site
+PW: Qwer!234
 ```````````````````````````````````````````````````
-5. SKILL
-````````````````````````````````````````````````````
-language : java, javaScript
-framework : spring boot
-view : thymeleaf
-````````````````````````````````````````````````````
