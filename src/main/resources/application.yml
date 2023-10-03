@@ -8,7 +8,7 @@ spring:
     check-template-location: true
     
 server:
-  port : 3000
+  port : 2100
   error:
     whitelabel:
       enabled: false    
