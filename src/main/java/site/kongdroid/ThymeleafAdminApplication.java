@@ -10,10 +10,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 @PropertySource(value = "classpath:/application-${spring.profiles.active}.yml")
-public class TestFrontApplication {
+public class ThymeleafAdminApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TestFrontApplication.class, args);
+		SpringApplication.run(ThymeleafAdminApplication.class, args);
 	}
 
     @Bean
