@@ -7,17 +7,22 @@ const signIn = () => {
 		onFocus(id, '아이디를 입력하세요.');
 		return;
 	}
-	
+
+	if (isEmpty(password.value)) {
+		onFocus(password, '패스워드를 입력하세요.');
+		return;
+	}
+
 	if(checkEmail(id.value)) {
 		onFocus(id, '아이디는 이메일 형식이어야 합니다.');
 		return;
 	}
-	
-	if (isEmpty(password.value)) {
-		onFocus(password, '이메일을 입력하세요.');
+
+
+	if(checkPassword(password.value)) {
+		onFocus(password, '패스워드 형식이 올바르지 않습니다.');
 		return;
 	}
-	
 	
   	callXhr(
     	document.getElementById('api-path').value.concat('/auth/authentication'), 
@@ -28,10 +33,8 @@ const signIn = () => {
     	},
     	(callback) => {
 			if(callback.data !== null) {
-				if(callback.data.role.toUpperCase() !== 'ROLE_ADMIN') {
-					alert('관리자 계정만 로그인할 수 있습니다.');
-				} else {
-					handleUserCookie(callback.data.role, callback.data.memberSeq);
+				if(callback.code === 'SUCCESS') {
+					handleUserCookie(callback.data.jwt);
 					location.href = '/post/1';
 				}
 			} else {
@@ -197,12 +200,8 @@ const handleUserHref = (isAdd) => {
 	}
 };
 
-const handleUserCookie = (role, memberSeq) => {
-	if(memberSeq !== null) {
-		setCookie('memberSeq', memberSeq, 1);
+const handleUserCookie = (jwt) => {
+	if(jwt !== null) {
+		setCookie('jwt', jwt, 1);
 	}
-	
-	if(role !== null) {
-		setCookie('role', role.toUpperCase(), 1);
-	}	
 };

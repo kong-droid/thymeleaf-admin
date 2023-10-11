@@ -24,7 +24,7 @@ const imageUploads = (blob, callbackImage) => {
 	formData.append('memberSeq', getCookie('memberSeq'));
 	formData.append('files', blob);
 	callFileXhr(
-		document.getElementById('api-path').value.concat(`/attach/a`)
+		document.getElementById('api-path').value.concat(`/attach/upload`)
 		, 'POST'
 		, formData
 		, (callback) => {

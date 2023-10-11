@@ -150,7 +150,7 @@ const checkEmail = (str) => {
 };
 
 const checkPassword = (str) => {
-	const pattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i;
+	const pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i;
 	return !pattern.test(str);
 };
 
