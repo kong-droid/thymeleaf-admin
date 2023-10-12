@@ -159,10 +159,9 @@ const commonFileUpload = (tbName, tbSeq, tbType, memberSeq, files, func) => {
 	formData.append('tbName', tbName);
 	formData.append('tbSeq', tbSeq);
 	formData.append('tbType', tbType);
-	formData.append('memberSeq', memberSeq);
 	formData.append('files', files);
 	callFileXhr(
-		document.getElementById('api-path').value.concat('/attach/a')
+		document.getElementById('api-path').value.concat('/attach/upload')
 		, 'POST'
 		, formData
 		, (callback) => {
@@ -173,7 +172,7 @@ const commonFileUpload = (tbName, tbSeq, tbType, memberSeq, files, func) => {
 
 const downloadFile = ( fileName, attachSeq ) => {
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', document.getElementById('api-path').value.concat(`/attach/r/${attachSeq}`));
+    xhr.open('POST', document.getElementById('api-path').value.concat(`/attach/download/${attachSeq}`));
     xhr.send();    
     xhr.responseType = 'blob';
     xhr.onload = () => {
@@ -193,7 +192,7 @@ const downloadFile = ( fileName, attachSeq ) => {
 const removeFile = ( attachSeq ) => {
 	if(confirm('파일을 삭제하시겠습니까?')) {
 	  	callXhr(
-	    	document.getElementById('api-path').value.concat(`/attach/d-p/${attachSeq}`), 
+	    	document.getElementById('api-path').value.concat(`/attach/delete/${attachSeq}`),
 	    	'POST',  
 	    	null, 
 	    	(callback) => {

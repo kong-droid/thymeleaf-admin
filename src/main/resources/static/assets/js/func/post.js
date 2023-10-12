@@ -9,7 +9,7 @@ const getPosts = (currentPage) => {
 	document.querySelector("#posts").innerHTML = "";
 			
 	callXhr(
-		document.getElementById('api-path').value.concat('/post/r')
+		document.getElementById('api-path').value.concat('/post/read')
 		, 'POST' 
     	, { search : { page : pageInfo.currentPage, size : pageInfo.pageSize, delYn : 'N' }, boardSeq : boardSeq }
     	, (callback) => {
@@ -64,13 +64,10 @@ const movePage = ( postSeq ) => {
 const deletePost = ( postSeq, boardSeq ) => {
 	let postId = postSeq === null ? document.getElementById('post-seq').value : postSeq;
 	callXhr(
-		document.getElementById('api-path').value.concat('/post/d-l')
+		document.getElementById('api-path').value.concat('/post/physical-delete')
 		, 'POST' 
     	, { 
 			postSeq : postId
-			, handle : { 
-				memberSeq : getCookie('memberSeq') 
-			}
 		}
     	, (callback) => {
 			if(boardSeq !== null) {
@@ -86,7 +83,7 @@ const deletePost = ( postSeq, boardSeq ) => {
 const getPost = () => {
 	
 	callXhr(
-		document.getElementById('api-path').value.concat(`/post/r/${postSeq}`)
+		document.getElementById('api-path').value.concat(`/post/read/${postSeq}`)
 		, 'GET' 
     	, null
     	, (callback) => {
@@ -114,7 +111,7 @@ const getPost = () => {
 	};
 	
 	callXhr(
-		document.getElementById('api-path').value.concat('/attach/r')
+		document.getElementById('api-path').value.concat('/attach/read')
 		, 'POST' 
     	, callParam
     	, (callback) => {
@@ -176,12 +173,11 @@ const handlePost = () => {
 			, periodEndDt : periodEndDt.value
 			, useYn : useYn
 			, delYn : 'N'
-			, memberSeq : getCookie('memberSeq')
 		}
 	};
 	
 	callXhr(
-		document.getElementById('api-path').value.concat(postSeq === '' ? '/post/a' : '/post/m')
+		document.getElementById('api-path').value.concat(postSeq === '' ? '/post/register' : '/post/modify')
 		, 'POST' 
     	, callParam
     	, (callback) => {

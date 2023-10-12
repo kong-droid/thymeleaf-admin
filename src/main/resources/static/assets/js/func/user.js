@@ -109,7 +109,7 @@ const handleUserInfo = (isAdd) => {
 	}; 		
 		 		
   	callXhr(
-    	document.getElementById('api-path').value.concat(isAdd ? '/member/a' : '/member/m') 
+    	document.getElementById('api-path').value.concat(isAdd ? '/member/register' : '/member/modify')
     	, 'POST'
     	, callParam
     	, (callback) => {
@@ -122,7 +122,7 @@ const handleUserInfo = (isAdd) => {
 					, profile[0]
 					, (func) => {
 					  	callXhr(
-					    	document.getElementById('api-path').value.concat('/member/m') 
+					    	document.getElementById('api-path').value.concat('/member/modify')
 					    	, 'POST' 
 					    	, {
 								handle : { memberSeq : callback.data.memberSeq } 
@@ -150,7 +150,7 @@ const withdrawal = () => {
 	
 	if(confirm('정말 탈퇴하시겠습니까?')) {
 		callXhr(
-			document.getElementById('api-path').value.concat('/member/d-l')
+			document.getElementById('api-path').value.concat('/member/withdrawal')
 			, 'POST' 
 			, callParam
 			, () => {
@@ -164,13 +164,12 @@ const withdrawal = () => {
 const getUserInfo = () => {
 	let callParam = {
 		search : {
-			memberSeq : getCookie('memberSeq')
-			, delYn : 'N'
+			delYn : 'N'
 		}
 	};
 	
 	callXhr(
-		document.getElementById('api-path').value.concat(`/member/r/${getCookie('memberSeq')}`)
+		document.getElementById('api-path').value.concat(`/member/read/${getCookie('memberSeq')}`)
 		, 'GET' 
 		, callParam
 		, (callback) => {
