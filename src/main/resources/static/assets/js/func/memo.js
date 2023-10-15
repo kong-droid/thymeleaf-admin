@@ -10,12 +10,11 @@ const handleMemo = () => {
 		memoDt : getToday()
 		, handle : {
 			content	: memo.value
-			, memberSeq : getCookie('memberSeq')
 		}
 	}; 		
 		 		
   	callXhr(
-    	document.getElementById('api-path').value.concat('/memo/a') 
+    	document.getElementById('api-path').value.concat('/memo/register')
     	, 'POST'
     	, callParam
     	, (callback) => {
@@ -35,26 +34,21 @@ const handleMemo = () => {
 
 const removeMemo = (memoSeq) => {
 	  callXhr(
-    	document.getElementById('api-path').value.concat(`/memo/d/${memoSeq}`) 
+    	document.getElementById('api-path').value.concat(`/memo/delete`)
     	, 'POST'
-    	, {memoSeq : memoSeq}
+    	, { memoSeq : memoSeq }
     	, (callback) => {
 			document.getElementById('remove-memo-' + memoSeq).remove();
     	}  
 	);	
 };
 
-const getMemos= () => {
-	let callParam = {
-		search : {
-			memberSeq : getCookie('memberSeq')
-		}
-	};
-	
+const getMemos = () => {
+
 	callXhr(
-		document.getElementById('api-path').value.concat('/memo/r')
+		document.getElementById('api-path').value.concat('/memo/read')
 		, 'POST' 
-		, callParam
+		, {}
 		, (callback) => {
 			let memos = document.getElementById('memos');
 			if(callback.data.memos.length > 0) {

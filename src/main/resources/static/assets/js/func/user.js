@@ -7,17 +7,22 @@ const signIn = () => {
 		onFocus(id, '아이디를 입력하세요.');
 		return;
 	}
-	
+
+	if (isEmpty(password.value)) {
+		onFocus(password, '패스워드를 입력하세요.');
+		return;
+	}
+
 	if(checkEmail(id.value)) {
 		onFocus(id, '아이디는 이메일 형식이어야 합니다.');
 		return;
 	}
-	
-	if (isEmpty(password.value)) {
-		onFocus(password, '이메일을 입력하세요.');
+
+
+	if(checkPassword(password.value)) {
+		onFocus(password, '패스워드 형식이 올바르지 않습니다.');
 		return;
 	}
-	
 	
   	callXhr(
     	document.getElementById('api-path').value.concat('/auth/authentication'), 
@@ -28,10 +33,8 @@ const signIn = () => {
     	},
     	(callback) => {
 			if(callback.data !== null) {
-				if(callback.data.role.toUpperCase() !== 'ROLE_ADMIN') {
-					alert('관리자 계정만 로그인할 수 있습니다.');
-				} else {
-					handleUserCookie(callback.data.role, callback.data.memberSeq);
+				if(callback.code === 'SUCCESS') {
+					handleUserCookie(callback.data.jwt);
 					location.href = '/post/1';
 				}
 			} else {
@@ -106,7 +109,7 @@ const handleUserInfo = (isAdd) => {
 	}; 		
 		 		
   	callXhr(
-    	document.getElementById('api-path').value.concat(isAdd ? '/member/a' : '/member/m') 
+    	document.getElementById('api-path').value.concat(isAdd ? '/member/register' : '/member/modify')
     	, 'POST'
     	, callParam
     	, (callback) => {
@@ -119,7 +122,7 @@ const handleUserInfo = (isAdd) => {
 					, profile[0]
 					, (func) => {
 					  	callXhr(
-					    	document.getElementById('api-path').value.concat('/member/m') 
+					    	document.getElementById('api-path').value.concat('/member/modify')
 					    	, 'POST' 
 					    	, {
 								handle : { memberSeq : callback.data.memberSeq } 
@@ -147,7 +150,7 @@ const withdrawal = () => {
 	
 	if(confirm('정말 탈퇴하시겠습니까?')) {
 		callXhr(
-			document.getElementById('api-path').value.concat('/member/d-l')
+			document.getElementById('api-path').value.concat('/member/withdrawal')
 			, 'POST' 
 			, callParam
 			, () => {
@@ -161,13 +164,12 @@ const withdrawal = () => {
 const getUserInfo = () => {
 	let callParam = {
 		search : {
-			memberSeq : getCookie('memberSeq')
-			, delYn : 'N'
+			delYn : 'N'
 		}
 	};
 	
 	callXhr(
-		document.getElementById('api-path').value.concat(`/member/r/${getCookie('memberSeq')}`)
+		document.getElementById('api-path').value.concat('/member/me')
 		, 'GET' 
 		, callParam
 		, (callback) => {
@@ -197,12 +199,8 @@ const handleUserHref = (isAdd) => {
 	}
 };
 
-const handleUserCookie = (role, memberSeq) => {
-	if(memberSeq !== null) {
-		setCookie('memberSeq', memberSeq, 1);
+const handleUserCookie = (jwt) => {
+	if(jwt !== null) {
+		setCookie('jwt', jwt, 1);
 	}
-	
-	if(role !== null) {
-		setCookie('role', role.toUpperCase(), 1);
-	}	
 };

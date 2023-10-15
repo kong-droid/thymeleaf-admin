@@ -7,6 +7,7 @@ const callXhr = (url, method, params, callback) => {
     const xhr = new XMLHttpRequest();
     xhr.open(method, url);
     xhr.setRequestHeader('Content-type', 'application/json;charset=UTF-8');
+	xhr.setRequestHeader('Authorization', getCookie('jwt'));
     xhr.send(params !== null && JSON.stringify(params));
     xhr.onreadystatechange = () => {
 		if(xhr.readyState === 4) {
@@ -31,7 +32,8 @@ const callXhr = (url, method, params, callback) => {
 const callFileXhr = (url, method, params, callback) => {
     const xhr = new XMLHttpRequest();
     xhr.open(method, url);
-    xhr.send(params !== null && params);
+	xhr.setRequestHeader('Authorization', getCookie('jwt'));
+	xhr.send(params !== null && params);
     xhr.onreadystatechange = () => {
 		if(xhr.readyState === 4) {
 			switch (xhr.status) {
