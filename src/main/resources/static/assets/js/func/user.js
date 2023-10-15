@@ -169,7 +169,7 @@ const getUserInfo = () => {
 	};
 	
 	callXhr(
-		document.getElementById('api-path').value.concat(`/member/read/${getCookie('memberSeq')}`)
+		document.getElementById('api-path').value.concat('/member/me')
 		, 'GET' 
 		, callParam
 		, (callback) => {
